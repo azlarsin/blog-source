@@ -10,7 +10,7 @@ ignore: false
 
 记录开发 blog 的过程。
 <!-- desc -->
-## todo (del 线代表已完成...)
+## todo (del 线代表已完成...这个 del 线有点蠢)
 ### 功能
 - <del>根据 `Widget` 宽度与 `Tags`、`Articles` 的字体大小计算其最大显示字符数</del>
 - `List` 样式 （page 的 comments 数量、样式）
@@ -29,6 +29,7 @@ ignore: false
 - 逻辑优化。。。以前的代码看着太蛋疼了，就差重构了。。。（17.10.4）
 - /demos/ 文件夹，每次在 build 之后可能会丢失
 - 将目录、定位锚，改为该条字段的拼音，用数字会导致定位不准，非常不便于其他文章指向引用
+- <del>将 md 文件夹原目录下 (/files/) 抽出到了一个单独的仓库：[https://github.com/azlarsin/blog-source](https://github.com/azlarsin/blog-source)</del>
 
 
 ### bugs
@@ -379,6 +380,21 @@ to:
 
 生成了 manifest.js 文件，并将所有资源文件移入 'assets' 文件夹。
 
+
+### 17.11.11
+#### 将 md 文件夹抽到了一个新仓库
+由于新工作电脑使用内网，不方便将旧电脑整体迁移过来，但又想在工作电脑上写文章，所以将其提到了一个新仓库。
+
+##### repo
+[https://github.com/azlarsin/blog-source](https://github.com/azlarsin/blog-source)
+
+##### app
+主要是在配置文件中增加了一个 origin: `SOURCE_FILE_URL`，在 `ContentComponent` 组件内获取文章时，使用这个 origin；其余逻辑不变。
+
+##### build.js
+以前是要将 `/source/files` 移动到 `/build/files` 以方便发布，现在这段逻辑整体废弃掉，可以通过维护新 repo 实现更新了。
+
+这里要注意下 build 的时候要移除 repo 中的 `README.md`。
 
 
 
