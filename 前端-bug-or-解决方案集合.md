@@ -116,3 +116,86 @@ npm ls --global foo
 > - meta.[hash].js – webpack runtime, which hash depends on an app and vendors file names
 
 
+### css child's height expands parent with transition
+
+```html
+<style>
+.child {
+	height: 0;
+	transition: height .3s;	
+}
+
+.child:hover {
+	height: auto;
+}
+
+</style>
+
+<div class="wrapper">
+	<div class="child">
+		contents..
+	</div>
+</div>
+```
+
+以上代码，当子元素的高度设置为 `auto` 的时候，父级 wrapper 不会产生渐变效果；如需父级有被撑开的效果，需要为 child 的渐变状态设置一个明确的高度（如：100px）。
+
+
+### firefox padding-top 
+画正方形的时候，我们常用的方式是以一个伪元素的 padding-top 撑开元素的 height，以使其满足各种场景（resize 交互或响应式），
+而 firefox 的 padding-top 计算的标准是基于元素的高度的。
+
+
+### hot update 不更新页面
+#### 前提
+先参考 [https://gaearon.github.io/react-hot-loader/getstarted/](https://gaearon.github.io/react-hot-loader/getstarted/) 配置完毕。
+
+能在页面 console 接收到如下信息：
+
+```text
+[HMR] Checking for updates on the server...
+[HMR] Updated modules:
+[HMR]  - 348
+[HMR]  - 120
+[HMR] Consider using the NamedModulesPlugin for module names.
+[HMR] App is up to date.
+```
+
+`<head>` 标签内页会加载相应 `<script>` 但是页面始终不更新。。
+
+#### 解决
+##### 方案
+```javascript
+if (module.hot) {
+  module.hot.accept('./containers/Root', () => render(Root));
+}
+```
+
+to
+
+```javascript
+if (module.hot) {
+  module.hot.accept();
+}
+```
+
+##### 参考
+> [https://github.com/gaearon/react-hot-loader/issues/581](https://github.com/gaearon/react-hot-loader/issues/581)
+> 
+> ```
+> @egorovli I spent hours to trying to get my rhl 3 update to correctly apply edits, then your solution with module.hot.accept() worked. The recommended way, with module.hot.accept(path, callback) failed silently - with "Component does not know how to update itself". I think there must be something about the relative paths or anything in my typescript setup that fails it.
+
+> Is there any documentation/links on what this does, exactly - since we don't get the chance to explicitly call the render function again? Apart from the very annoying store error, are there any other disadvantages to using this simple syntax?
+
+> UPDATE: I had an old version of the webpack-hot-middleware, this was most likely the cause of my problems.
+> ```
+
+
+### npm install ${react-native plugin}, then packages are removed
+#### 场景
+其实是 npm 的一个 bug，安装一个包的时候会卸载所有包，并且 package.json 的信息也被维护了，
+
+#### 解决
+run `npm install` again.
+
+> 参考：[https://github.com/npm/npm/issues/17379](https://github.com/npm/npm/issues/17379)
