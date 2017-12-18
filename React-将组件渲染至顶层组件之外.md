@@ -3,6 +3,7 @@ author: azlar
 date: '2017-11-24 15:02:00'
 tags: [react, component render outside]
 
+---
 
 将 React 组件渲染至主组件之外。
 <!-- desc -->
@@ -162,6 +163,7 @@ React 16 新增的方法，专门为了解决此而生，事件冒泡仍会继�
 
 
 ## demo
-repo: []()
-online demo: []()
+repo: [https://github.com/azlarsin/react-render-outside-demo](https://github.com/azlarsin/react-render-outside-demo)
+
+online demo: [https://blog.azlar.cc/demos/react-render-outside-demo/](https://blog.azlar.cc/demos/react-render-outside-demo/)
 
