@@ -101,9 +101,18 @@ class Modal1 extends React.Component {
 且事件冒泡仍会影响到 App 组件（姑且算预期）。
 
 ##### dom 与 virtual-dom
-![](//blog.azlar.cc/images/react-render-component-outside/modal_1_dom.jpeg)
-<br>
-![](//blog.azlar.cc/images/react-render-component-outside/modal_1_vd.jpeg)
+<table>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_1_dom.jpeg">
+	</td>
+<tr>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_1_vd.jpeg">
+	</td>
+</tr>
+</table>
 
 #### 2. 使用 ReactDOM.render()
 ##### code
@@ -152,9 +161,18 @@ class Modal2 extends React.Component {
 不会产生事件冒泡（与原顶层组件），此时的 modal 已经脱离原有的组件结构，但仍可以通过回调完成交互。
 
 ##### dom 与 virtual-dom
-![](//blog.azlar.cc/images/react-render-component-outside/modal_2_dom.jpeg)
-<br>
-![](//blog.azlar.cc/images/react-render-component-outside/modal_2_vd.jpeg)
+<table>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_2_dom.jpeg">
+	</td>
+<tr>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_2_vd.jpeg">
+	</td>
+</tr>
+</table>
 
 #### 3. 使用 ReactDOM.createPortal()
 ##### code
@@ -172,9 +190,19 @@ class Modal3 extends React.Component {
 React 16 新增的方法，专门为了解决此而生，事件冒泡仍会继续发生；可以理解为想法一的官方版。
 
 ##### dom 与 virtual-dom
-![](//blog.azlar.cc/images/react-render-component-outside/modal_3_dom.jpeg)
-<br>
-![](//blog.azlar.cc/images/react-render-component-outside/modal_3_vd.jpeg)
+<table>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_3_dom.jpeg">
+	</td>
+<tr>
+<tr>
+	<td>
+	<img src="//blog.azlar.cc/images/react-render-component-outside/modal_3_vd.jpeg">
+	</td>
+</tr>
+</table>
+
 
 
 ## demo
