@@ -18,7 +18,7 @@ ignore: false
 - <del>**`Pagination`**</del>
 - <del> `build.js` 移动文件问题（现在需要 sudo 权限，由于有一个 `.DS_STORE` 文件存在） </del>
 - <del>`build.js` => `new post`（命令生成 `yaml` 配置文件）</del>
-- 归档
+- <del>归档</del>
 - SEO （sitemap）
 - <del> !!! github pages **static html map** </del>
 - 初次加载的时候，`config.json` 请求了两次：`Widget` 与 `ListComponent` 同时发起了 `ajax` 请求
@@ -397,6 +397,11 @@ to:
 这里要注意下 build 的时候要移除 repo 中的 `README.md`。
 
 
+### 18.1.30
+#### archives
+归档功能。
+
+本来是用 node 处理文件生成 `archives.md`，后来想了下觉得没必要，直接分析 `config.json` 即可。
 
 
 
