@@ -24,7 +24,7 @@ ignore: false
 - 初次加载的时候，`config.json` 请求了两次：`Widget` 与 `ListComponent` 同时发起了 `ajax` 请求
 - 列表筛选，最后更新时间（由于很多流水账会在不同时间续写）
 - time-line 与 archive
-- build 脚本新功能，自动部署到仓库
+- <del>build 脚本新功能，自动部署到仓库</del>
 - 表格问题，macdown 的表格，marked 貌似不支持，需要自己分析下
 - 逻辑优化。。。以前的代码看着太蛋疼了，就差重构了。。。（17.10.4）
 - /demos/ 文件夹，每次在 build 之后可能会丢失
@@ -401,7 +401,10 @@ to:
 #### archives
 归档功能。
 
-本来是用 node 处理文件生成 `archives.md`，后来想了下觉得没必要，直接分析 `config.json` 即可。
+本来是用 node 处理文件生成 `archives.md`，后来想了下觉得没必要，直接分析 `config.json` 渲染组件即可。
+
+#### auto push
+在 build 脚本中增加了自动推送的功能，开发起来方便多了。
 
 
 
