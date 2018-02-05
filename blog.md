@@ -434,7 +434,10 @@ to:
 ```
 	
 - 方法二，js listen window.hasChange && locatin.href，then auto scroll the navigation-bar.height。
-- 这种方法会有一个问题：**`点击同一个 hash 的时候，浏览器会认为当前位置并不是该 hash 所在的位置，然后重新定位，而此次定位，不会触发刚才写的 auto scoll 方法。`** 解决：为目录中的 `<a>` 添加一个 listener：该 hash 与当前 location.hash 相同的时候，preventDefault();
+
+这种方法会有一个问题：**`点击同一个 hash 的时候，浏览器会认为当前位置并不是该 hash 所在的位置，然后重新定位，而此次定位，不会触发刚才写的 auto scoll 方法。`** 
+
+解决：为目录中的 `<a>` 添加一个 listener：该 hash 与当前 location.hash 相同的时候，preventDefault();
 	
 
 
