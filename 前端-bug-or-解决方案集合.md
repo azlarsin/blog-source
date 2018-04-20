@@ -199,3 +199,41 @@ if (module.hot) {
 run `npm install` again.
 
 > 参考：[https://github.com/npm/npm/issues/17379](https://github.com/npm/npm/issues/17379)
+
+
+
+### svg use mouseEvent doesn't fire when xlinkHref-element is animating
+#### 场景
+1. 将 `use` 标签放在 svg 最底层，以便实现 `zIndex` 效果
+2. `xlinkHref` 关联的元素具有动画效果，如 0% ~ 1% 渐变、hover 放大
+3. 由于 `use` 覆盖了 元素，所以 *mouseLeave* 事件放到 `use` 上
+
+
+##### bug
+当关联元素进行 0% ~ 1% 动画时，`use` 标签的 *mouseLeave* 不会被触发。
+
+##### some code
+```html
+<svg width="400" height="400" class="turntable" viewBox="-200 -200 400 400">
+<defs>
+<filter id="shadow">
+	<feDropShadow stdDeviation="1">
+</feDropShadow>
+</filter>
+</defs>
+<circle cx="0" cy="0" r="200" fill="#fff"></circle>
+<path id="pie-0" d="M0 0 L200 0 A200 200 0 1 1 -200 2.4492935982947064e-14" fill="rgba(171, 63, 184, 0.2160970845642396)" style="transform: scale(1);">
+</path>
+<path id="pie-1" d="M0 0 L-200 2.4492935982947064e-14 A200 200 0 1 1 200 -4.898587196589413e-14" fill="rgba(247, 90, 105, 0.6436378563060889)" style="transform: scale(1);">
+</path>
+<use xlink:href="#pie-0">
+</use>
+</svg>
+```
+
+##### img
+![](//blog.azlar.cc/images/web-bugs/pie_animation_1.gif)
+![](//blog.azlar.cc/images/web-bugs/pie_animation_2.gif)
+
+#### 解决
+暂无较好解决方案。
