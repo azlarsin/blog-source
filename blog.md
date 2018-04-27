@@ -730,3 +730,7 @@ Articles 挂件中 Related Post 的链接有点问题，缺失最后的 '/'。
 ```
 
 参考：[https://github.com/webpack/webpack/issues/1315](https://github.com/webpack/webpack/issues/1315)
+
+
+### 18.04.20
+修改了 `build.js` 的自动推送，之前 bug：`config.json` 未推送（由于推送写在了写入 config.json 之前 :D）。
