@@ -7,6 +7,7 @@ tags: [前端, bug, 坑, 解决方案, javascript, node, css]
 
 流水账式记录前端遇到的各种问题，包括不限于框架、node、浏览器问题等。
 <!-- desc -->
+## web
 
 ### firefox can't drag issue
 这个问题是一个同事在用我写的一个 [小库](https://github.com/azlarsin/draggable-tree) 时发现的，在火狐内不能正常拖拽。（拽不起来）
@@ -237,3 +238,20 @@ run `npm install` again.
 
 #### 解决
 暂无较好解决方案。
+
+
+## React Native
+### controled component
+在 ios 端，input 其实是不可控的具体可见：
+
+[https://github.com/facebook/react-native/issues/5370](https://github.com/facebook/react-native/issues/5370)
+
+### animation with nativeDriver wrong callback
+callback 其实会生效，但是值其实会回到 0。所以如果 animation 的退出值（如父级淡出）不为 0 时，此 animation 会回到值为 0。
+
+（例：子级 slide-down，父级 fadeout，子级退出后触发 callback，会回到 slide 起始的位置）
+
+[https://github.com/facebook/react-native/issues/11328](https://github.com/facebook/react-native/issues/11328)
+
+
+### 
