@@ -13,7 +13,7 @@ tags: [react, diff algorithm, diff 算法, virtual dom]
 [React](http://facebook.github.io/react/) 是由 facebook 开发来创建用户界面的 Javascript 库。性能，一直是从头到尾开发其时考虑的重点。在这篇文章中，我会展现 React 的 diff 算法与渲染工作，之后你可以来优化你自己的 apps。
 
 ## Diff Algotithm
-在我们了解实现细节之前，让我们先总体了解瞎 React 是怎样工作的，这点很重要。（PS：Before we go into the implementation details it is important to get an overview of how React works.）
+在我们了解实现细节之前，让我们先总体了解下 React 是怎样工作的，这点很重要。（PS：Before we go into the implementation details it is important to get an overview of how React works.）
 
 ```jsx
 var MyComponent = React.createClass(

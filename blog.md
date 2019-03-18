@@ -23,7 +23,7 @@ ignore: false
 - <del> !!! github pages **static html map** </del>
 - 初次加载的时候，`config.json` 请求了两次：`Widget` 与 `ListComponent` 同时发起了 `ajax` 请求
 - 列表筛选，最后更新时间（由于很多流水账会在不同时间续写）
-- time-line 与 archive
+- <del>time-line 与 archive</del>
 - <del>build 脚本新功能，自动部署到仓库</del>
 - 表格问题，macdown 的表格，marked 貌似不支持，需要自己分析下
 - 逻辑优化。。。以前的代码看着太蛋疼了，就差重构了。。。（17.10.4）
@@ -734,3 +734,7 @@ Articles 挂件中 Related Post 的链接有点问题，缺失最后的 '/'。
 
 ### 18.04.20
 修改了 `build.js` 的自动推送，之前 bug：`config.json` 未推送（由于推送写在了写入 config.json 之前 :D）。
+
+
+### 19.03.18
+fix 了部分样式；to-top 增加了一个动画。
