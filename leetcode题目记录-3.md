@@ -355,3 +355,193 @@ public String intToRoman(int num) {
 }
 ```
  
+# 19.4.2
+仍然菜。
+
+## 13. Roman to Integer
+### Q
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+```
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+### A
+Runtime: 180 ms
+
+Memory Usage: 42.1 MB
+
+#### code
+```javascript
+var romanToInt = function(s) {
+    let map = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+        'IV': 4,
+        'IX': 9,
+        'XL': 40,
+        'XC': 90,
+        'CD': 400,
+        'CM': 900
+    };
+    
+    let sum = 0;
+    for(let i = 0;i < s.length;i++) {
+        let v = map[s[i]];
+        if (s[i].match(/I|X|C/) && s[i + 1]) {
+            if (s[i] + s[i + 1] in map) {
+                v = map[s[i] + s[i + 1]];
+                i++;
+            }
+        }
+        sum += v;
+    }
+    return sum;
+};
+```
+
+### other
+#### …
+```python
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        translations = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        }
+        number = 0
+        s = s.replace("IV", "IIII").replace("IX", "VIIII")
+        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+        for char in s:
+            number += translations[char]
+        return number
+```
+
+```java
+// 可优化：indexOf
+public int romanToInt(String s) {
+     int sum=0;
+    if(s.indexOf("IV")!=-1){sum-=2;}
+    if(s.indexOf("IX")!=-1){sum-=2;}
+    if(s.indexOf("XL")!=-1){sum-=20;}
+    if(s.indexOf("XC")!=-1){sum-=20;}
+    if(s.indexOf("CD")!=-1){sum-=200;}
+    if(s.indexOf("CM")!=-1){sum-=200;}
+    
+    char c[]=s.toCharArray();
+    int count=0;
+    
+   for(;count<=s.length()-1;count++){
+       if(c[count]=='M') sum+=1000;
+       if(c[count]=='D') sum+=500;
+       if(c[count]=='C') sum+=100;
+       if(c[count]=='L') sum+=50;
+       if(c[count]=='X') sum+=10;
+       if(c[count]=='V') sum+=5;
+       if(c[count]=='I') sum+=1;
+       
+   }
+   
+   return sum;
+    
+}
+```
+
+
+## 14. Longest Common Prefix
+### Q
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+**Note:**
+All given inputs are in lowercase letters a-z.
+
+```
+Input: ["flower","flow","flight"]
+Output: "fl"
+```
+
+```
+Input: ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+```
+
+### A
+Runtime: 64 ms, faster than 81.81% of JavaScript online submissions for Longest Common Prefix.
+
+Memory Usage: 36.8 MB, less than 5.74% of JavaScript online submissions for Longest Common Prefix.
+#### code 
+```javascript
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    return strs.length === 1 ? strs[0] : strs.reduce((s, v, i) => {
+        if (i === 0) {
+            s = getCommon(v, strs[i + 1]);
+        } else {
+            s = getCommon(s, v);
+        }
+        return s;
+    }, '');
+};
+
+let getCommon = function (s1, s2) {
+    let i = 0;
+    let s = '';
+    while(i < Math.min(s1.length, s2.length)) {
+        if (s1[i] === s2[i]) {
+            s += s1[i];
+        } else {
+            return s;
+        }
+        i++;
+    }
+
+    return s;
+};
+```
+
+### other
+寻找最短、最长字符串。
+
+```python
+class Solution:
+    def longestCommonPrefix(self, m):
+        if not m: return ''
+				#since list of string will be sorted and retrieved min max by alphebetic order
+        s1 = min(m)
+        s2 = max(m)
+
+        for i, c in enumerate(s1):
+            if c != s2[i]:
+                return s1[:i] #stop until hit the split index
+        return s1
+```
+
+这个解法里，有一个注意的点：字符的排序。
+
+例，我用 js 写简单 min、max 时候：
+
+`["flower","flow","flight"] => { min: 'flow', max: 'flower' } => 'flow'`
