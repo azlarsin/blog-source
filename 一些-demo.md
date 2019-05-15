@@ -98,3 +98,9 @@ function throttle(fn, freq = 33.33333) {
 <div style='margin: 27px 0;box-shadow: 0 0 7px 1px rgba(0,0,0, .15)'>
 	<iframe width="100%" height="300" src="//jsfiddle.net/azlar/38wpfyLd/2/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 </div>
+
+
+### moving background(linear-gradient)
+<div style='margin: 27px 0;box-shadow: 0 0 7px 1px rgba(0,0,0, .15)'>
+	<iframe width="100%" height="300" src="//jsfiddle.net/azlar/koqc94eu/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+</div>
