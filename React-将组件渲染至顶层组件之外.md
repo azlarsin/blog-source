@@ -118,7 +118,7 @@ class Modal1 extends React.Component {
 ##### code
 ```js
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import { render } from 'react-dom';
 
 class Modal2 extends React.Component {
     constructor(props) {
@@ -178,7 +178,7 @@ class Modal2 extends React.Component {
 ##### code
 ```js
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import { createPortal } from 'react-dom';
 
 class Modal3 extends React.Component {
     render() {
