@@ -110,3 +110,8 @@ function throttle(fn, freq = 33.33333) {
 <div style='margin: 27px 0;box-shadow: 0 0 7px 1px rgba(0,0,0, .15)'>
 	<iframe width="100%" height="640" src="//jsfiddle.net/azlar/dg0j8ton/10/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 </div>
+
+### loading bar
+<div style='margin: 27px 0;box-shadow: 0 0 7px 1px rgba(0,0,0, .15)'>
+	<iframe width="100%" height="300" src="//jsfiddle.net/azlar/fomwj85h/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+</div>
