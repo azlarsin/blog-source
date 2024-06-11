@@ -152,3 +152,49 @@ dd if=./FILE |openssl aes-256-cbc -d -a -pbkdf2 -k "XXX" | tar -zxPf -
 cat domain.key domain.cer > /etc/stunnel/stunnel.pem
 
 ```
+
+
+## ffmpeg
+### 需求
+合并 QVR 的视频为一个。按天 merge。
+
+### 问题
+1. 系统自带的 ffmpeg 版本比较旧，无法使用 acc 音频解码。导致无法合并。
+2. ffmpeg 对路径中 空格的识别问题
+ 
+自带的 ffmpeg
+```shell
+ffmpeg version 3.3.6 Copyright (c) 2000-2017 the FFmpeg developers
+  built with gcc 4.9.2 (Debian 4.9.2-10)
+  configuration: --enable-cross-compile --arch=i686 --target-os=linux --disable-yasm --disable-static --enable-shared --enable-gpl --enable-libmp3lame --disable-libx264 --enable-libsoxr --enable-version3 --enable-nonfree --disable-openssl --disable-decoder=ac3 --disable-decoder=ac3_fixed --disable-decoder=eac3 --disable-decoder=dca --disable-decoder=truehd --disable-encoder=ac3 --disable-encoder=ac3_fixed --disable-encoder=eac3 --disable-encoder=dca --disable-decoder=hevc --disable-decoder=hevc_cuvid --disable-encoder=hevc_nvenc --disable-encoder=nvenc_hevc --disable-decoder=h264 --disable-decoder=h264_cuvid --disable-encoder=libx264 --disable-encoder=libx264rgb --disable-encoder=h264_nvenc --disable-encoder=nvenc --disable-encoder=nvenc_h264 --disable-decoder=mpeg2video --disable-decoder=mpegvideo --disable-decoder=mpeg2_cuvid --disable-encoder=mpeg2video --disable-decoder=mpeg4 --disable-decoder=mpeg4_cuvid --disable-decoder=msmpeg4v1 --disable-decoder=msmpeg4v2 --disable-decoder=msmpeg4v3 --disable-encoder=mpeg4 --disable-encoder=msmpeg4v2 --disable-encoder=msmpeg4v3 --disable-decoder=mvc1 --disable-decoder=vc1 --disable-decoder=vc1_cuvid --disable-decoder=vc1image --disable-decoder=aac --disable-decoder=aac_fixed --disable-decoder=aac_latm --disable-encoder=aac --disable-decoder=on2avc --disable-encoder=ssa --disable-encoder=ass --disable-encoder=dvbsub --disable-encoder=dvdsub --disable-encoder=movtext --disable-encoder=srt --disable-encoder=subrip --disable-encoder=text --disable-encoder=webvtt --disable-encoder=xsub --disable-encoder=movtext --disable-decoder=ssa --disable-decoder=ass --disable-decoder=dvbsub --disable-decoder=dvdsub --disable-decoder=ccaption --disable-decoder=pgssub --disable-decoder=jacosub --disable-decoder=microdvd --disable-decoder=movtext --disable-decoder=mpl2 --disable-decoder=pjs --disable-decoder=realtext --disable-decoder=sami --disable-decoder=stl --disable-decoder=srt --disable-decoder=subrip --disable-decoder=subviewe --disable-decoder=subviewe --disable-decoder=text --disable-decoder=vplayer --disable-decoder=webvtt --disable-decoder=xsub --disable-decoder=ccaption --disable-decoder=movtext --disable-decoder=subviewer --disable-decoder=subviewer1 --extra-ldflags='-L/root/workspace/x86_64/ndk/LinkFS/usr/lib -L/root/workspace/x86_64/ndk/Model/TS-X53/build/RootFS/usr/local/medialibrary/lib -Wl,--rpath -Wl,/usr/local/medialibrary/lib' --extra-cflags='-I/root/workspace/x86_64/ndk/LinkFS/usr/include -I/root/workspace/x86_64/ndk/Model/TS-X53/build/RootFS/usr/local/medialibrary/include -D_GNU_SOURCE -DQNAP -fstack-protector-strong -fPIE' --extra-ldexeflags='-pie -Wl,-pie' --prefix=/root/workspace/x86_64/ndk/Model/TS-X53/build/RootFS/usr/local/medialibrary
+  libavutil      55. 58.100 / 55. 58.100
+  libavcodec     57. 89.100 / 57. 89.100
+  libavformat    57. 71.100 / 57. 71.100
+  libavdevice    57.  6.100 / 57.  6.100
+  libavfilter     6. 82.100 /  6. 82.100
+  libswscale      4.  6.100 /  4.  6.100
+  libswresample   2.  7.100 /  2.  7.100
+  libpostproc    54.  5.100 / 54.  5.100
+Hyper fast Audio and Video encoder
+usage: ffmpeg [options] [[infile options] -i infile]... {[outfile options] outfile}...
+```
+
+### 解决
+1. 手动安装：https://www.qnapclub.eu/en/qpkg/379。
+
+```shell
+/opt/ffmpeg/ffmpeg -y -f concat -safe 0 -i ${TXT_FILE_PATH} -c:v copy ${TARGET_OUTPUT_FILE_PATH} & # nas
+```
+
+
+1. 封装为 `file '/path1 path2/file'` 即可。双引号不可工作。
+
+
+## Qsync 启用后无法工作
+报错：`文件同步已停止，用户家目录已被停用。`
+
+### 解决
+不得不吐槽，只有一个报错，没有任何引导，qsync-client 也连接不上。必须去设置里修改：
+
+
+> 找到『控制台』打开，依次打开『权限』-『用户』，点击『用户家目录』，将『启用所有用户的家目录』选项打勾，应用即可。
