@@ -144,7 +144,7 @@ Unable to load host key: /etc/ssh/ssh_host_rsa_key
 [admin@Home-Nas .@backup_config]#
 ```
 
-一番搜索，貌似是传统艺能了，不过比较好奇，为什么运行了这么久才出问题。
+一番搜索，貌似是[传统艺能](https://forum.qnap.com/viewtopic.php?t=173307&sid=c62a1d3664f584994aac643081a8ee9d)了，不过比较好奇，为什么运行了这么久才出问题。
 
 由于不记得某些配置（流水账未记录的某些脚本）如何配的了，于是开始找寻文件备份方案。
 
@@ -236,6 +236,12 @@ drwxr-xr-x 3 admin administrators 4.0K 2025-02-09 02:57 share/
 
 # 结束
 ```
+
+
+### 思考
+本来写了个脚本监控 crontab 丢失，写完发现还是需放到 crontab 内运行，这样仍然有丢失风险。
+
+所以需换个方式来触发 crontab 检查/补全 逻辑。
 
 
 
